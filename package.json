@@ -16,6 +16,7 @@
   "dependencies": {
     "anywhere": "^1.5.0",
     "appium-chromedriver": "^3.0.1",
+    "babel-plugin-import": "^1.8.0",
     "babel-runtime": "^6.26.0",
     "element-china-area-data": "^4.0.0",
     "element-ui": "^2.2.1",
