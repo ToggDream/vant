@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>vant</h1>
-        <van-button type="primary">主要按钮</van-button>
+        <van-button style="width: 1rem" type="primary">主要按钮</van-button>
     </div>
 </template>
 <script>
@@ -18,5 +18,6 @@
         }
     };
 </script>
-<style>
+<style type="text/scss" lang="scss">
+
 </style>
