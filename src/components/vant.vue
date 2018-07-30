@@ -8,8 +8,8 @@
         <van-row class="choose-area">
             <van-button type="primary" @click="showAreaSheet = !showAreaSheet">选择地区</van-button>
         </van-row>
-        <van-actionsheet v-model="showAreaSheet" title="支持以下配送方式">
-            <van-area :area-list="areaList" />
+        <van-actionsheet v-model="showAreaSheet" title="请选择地址">
+            <van-area :area-list="areaList" :value="areaCode" @confirm="chooseArea()" @cancel="showAreaSheet=false" />
         </van-actionsheet>
 
 
@@ -21,10 +21,14 @@
         data() {
             return {
                 showAreaSheet: false,
-                areaList:area
+                areaList:area,
+                areaCode:'110101'
             };
         },
         methods: {
+            chooseArea(){
+                console.log(29,this.areaCode);
+            }
         }
     };
 </script>
