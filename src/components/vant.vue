@@ -11,23 +11,33 @@
         <van-actionsheet v-model="showAreaSheet" title="请选择地址">
             <van-area :area-list="areaList" :value="areaCode" @confirm="chooseArea()" @cancel="showAreaSheet=false" />
         </van-actionsheet>
-
+        <div>
+            <!--<lazy-component>
+                <img v-for="img in imageList" v-lazy="img" >
+            </lazy-component>-->
+        </div>
 
     </div>
 </template>
 <script>
     import area from "@/assets/js/area"
+
     export default {
         data() {
             return {
                 showAreaSheet: false,
                 areaList:area,
-                areaCode:'110101'
+                areaCode:'110101',
+                /*imageList: [
+                    'https://img.yzcdn.cn/1.jpg',
+                    'https://img.yzcdn.cn/2.jpg'
+                ]*/
             };
         },
         methods: {
             chooseArea(){
-                console.log(29,this.areaCode);
+                console.log(29, this.areaCode);
+                //console.log(31,document.getElementsByClassName('van-picker-column__item--selected').innerText());
             }
         }
     };
