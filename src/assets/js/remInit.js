@@ -46,4 +46,5 @@
             doc.body.style.fontSize = "16px";
         }, false);
     }
+    console.log('remSize',remStyle.outerText);
 })(750, 750);
