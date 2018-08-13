@@ -13,7 +13,8 @@ import 'vant/lib/vant-css/index.css';
 
 Vue.use(useMock);
 Vue.use(Vant);
-
+Vue.use(usePrototype);
+useMock(true);                                                     //mock开关
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

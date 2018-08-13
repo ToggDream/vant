@@ -29,7 +29,7 @@
 </script>
 <style scoped type="text/scss" lang="scss">
     .navbar{
-        height: 1rem;
+        height: $navHeight;
         background-color: $theme;
         color: $white;
         padding: 0 .1rem;
@@ -46,21 +46,25 @@
             .search-panel{
                 width: 100%;
                 background-color: rgba(0,0,0,0.2);
-                height: 60%;
+                height: $navHeight*0.6;
                 border-radius: 4px;
                 justify-content: flex-start;
+                align-items: center;
                 i{
-                    font-size: .4rem;
+                    font-size: .3rem;
                     margin: 0 .2rem;
                 }
                 input::-webkit-input-placeholder {
                     color: rgb(104, 219, 206);
-                    font-size: .3rem;
+                    font-size: $smallSize;
                 }
                 input{
                     border: none;
                     background-color: rgba(0,0,0,0);
                     color: $white;
+                    height: $navHeight*0.6;
+                    line-height:$navHeight*0.6;
+                    font-size: $smallSize;
                 }
             }
             .home-btn{

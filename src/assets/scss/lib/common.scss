@@ -4,6 +4,9 @@ body{
     margin: 0;
     padding: 0;
 }
+$navHeight:1rem;
+$smallSize:0.26rem;
+$normalSize:0.3rem;
 //动态数据
 @mixin vertical-center { // 垂直水平居中
     display: flex;
