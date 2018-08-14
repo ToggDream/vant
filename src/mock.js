@@ -12,7 +12,7 @@ let useMock = (isOpenMock) =>{
                 score:()=>Random.integer( 1, 5 ),
                 address:{
                     name:()=>Random.ctitle(2,4),
-                    distance:()=>Random.integer( 1, 5 )
+                    distance:()=>Random.integer( 1, 5 ),
                 },
                 "storeDetail|2":[
                     {
@@ -20,6 +20,7 @@ let useMock = (isOpenMock) =>{
                         img:'/src/assets/img/test.png',
                         price:()=>Random.integer( 1, 1000 ),
                         sale:()=>Random.integer( 1, 1000 ),
+                        name:()=>Random.ctitle(6,10)
                     }
                 ]
                 /**/

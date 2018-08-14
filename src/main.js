@@ -6,7 +6,8 @@ import router from './router'
 import useMock from "@/mock"                                    //mock模拟数据
 import remInit from '@/assets/js/remInit'
 import usePrototype from '@/assets/js/prototype'
-
+// 引入vue-amap
+import VueAMap from 'vue-amap';                                //高德地图
 
 import Vant from 'vant';
 import 'vant/lib/vant-css/index.css';
@@ -14,8 +15,19 @@ import 'vant/lib/vant-css/index.css';
 Vue.use(useMock);
 Vue.use(Vant);
 Vue.use(usePrototype);
+Vue.use(VueAMap);
 useMock(true);                                                     //mock开关
 Vue.config.productionTip = false
+
+// 初始化vue-amap
+VueAMap.initAMapApiLoader({
+    // 高德的key
+    key: '6e9a0349872b8b0f2923e901f94d0e2e',
+    // 插件集合
+    plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],
+    // 高德 sdk 版本，默认为 1.4.4
+    v: '1.4.4'
+});
 
 /* eslint-disable no-new */
 new Vue({

@@ -3,10 +3,12 @@ import Vue from 'vue'
 import axios from 'axios'
 import {post,fetch,patch,put} from '@/assets/js/http'             //axios封装
 import store from "@/assets/js/store"                             //vuex
+import VueAMap from 'vue-amap';                                //高德地图
 let usePrototype = () =>{
     Vue.prototype.$store = store;
     Vue.prototype.$state = store.state;
     Vue.prototype.$http = axios;
+    Vue.prototype.$VueAMap = VueAMap;
     //定义全局变量
     Vue.prototype.$post = post;
     Vue.prototype.$fetch = fetch;
