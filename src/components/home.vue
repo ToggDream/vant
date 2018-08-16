@@ -10,6 +10,7 @@
                    :plugin="plugin"
           >
           </el-amap>
+          <div>当前位置：{{ position.address }}</div>
           <div class="toolbar">
              <!-- <button @click="getMap()">get map</button>-->
           </div>
@@ -24,7 +25,7 @@
         data() {
             return {
                 amapManager: new this.$VueAMap.AMapManager(),
-                zoom: 12,
+                zoom: 20,
                 center: [121.59996, 31.197646],
                 plugin: [{
                     pName: 'Geolocation',
@@ -32,37 +33,34 @@
                         init(o) {
                             // o 是高德地图定位插件实例
                             o.getCurrentPosition((status, result) => {
-                                 console.log(35,result);  //  能获取定位的所有信息
+                                 //console.log(35,result);  //  能获取定位的所有信息
                                 if (result && result.position) {
                                     self.str = result.formattedAddress;
-                                    console.log(38,self.str);
-                                    /*self.positions.address = self.str.substring(self.str.indexOf('市') + 1);
-                                    self.positions.lng = result.position.lng;
-                                    self.positions.lat = result.position.lat;
-                                    self.positions.loaded = true;
-                                    self.$nextTick();
-                                    // 把获取的数据提交到 store 的数据中，以便其他单文件组件使用
-                                    self.$store.commit('POSITION', self.positions);
-                                    // console.log(self.positions);
-                                    sessionStorage.setItem('id', JSON.stringify(self.positions));*/
+                                    //console.log(38,self.str);
+                                    let position = {
+                                      address:self.str
+                                    }
+                                    sessionStorage.setItem('position',JSON.stringify(position))
                                 }
                             });
                         }
                     }
                 }],
-                position:{
-                    address:'',
-                    lnglatXY:[],
+                position: {
                     lng: '',
-                    lat: ''
-                }
+                    lat: '',
+                    address: '',
+                    loaded: false
+                },
             }
         },
         methods:{
-
+            getPosition(){
+              this.position = JSON.parse(sessionStorage.getItem('position'))
+            }
         },
         created(){
-           // this.getPosition();
+            this.getPosition()
         }
 
     }
@@ -72,6 +70,7 @@
 <style scoped type="text/scss" lang="scss">
    .home{
        .home-map{
+           display: none;
            height: 6rem;
        }
    }
