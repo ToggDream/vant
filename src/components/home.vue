@@ -23,7 +23,14 @@
     export default {
         name: 'home',
         data() {
+            let vueObj = this;
             return {
+              position: {
+                lng: '',
+                lat: '',
+                address: 'none',
+                loaded: false
+              },
                 amapManager: new this.$VueAMap.AMapManager(),
                 zoom: 20,
                 center: [121.59996, 31.197646],
@@ -36,31 +43,20 @@
                                  //console.log(35,result);  //  能获取定位的所有信息
                                 if (result && result.position) {
                                     self.str = result.formattedAddress;
-                                    //console.log(38,self.str);
-                                    let position = {
-                                      address:self.str
-                                    }
-                                    sessionStorage.setItem('position',JSON.stringify(position))
+                                    console.log(38,self.str);
+                                    vueObj.position.address = self.str;
                                 }
                             });
                         }
                     }
                 }],
-                position: {
-                    lng: '',
-                    lat: '',
-                    address: '',
-                    loaded: false
-                },
             }
         },
         methods:{
-            getPosition(){
-              this.position = JSON.parse(sessionStorage.getItem('position'))
-            }
+
         },
-        created(){
-            this.getPosition()
+        mounted(){
+
         }
 
     }
@@ -70,7 +66,7 @@
 <style scoped type="text/scss" lang="scss">
    .home{
        .home-map{
-           display: none;
+           //display: none;
            height: 6rem;
        }
    }

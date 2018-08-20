@@ -1,6 +1,7 @@
 <template>
     <div class="store">
-        <navbar></navbar>
+        <navbar @getSearchName="getSearchName" @getStore="getStore"></navbar>
+        <loading></loading>
         <!--search panel-->
         <van-cell-group>
             <van-row class="operate-row">
@@ -80,45 +81,51 @@
 </template>
 <script>
     import navbar from "@/components/template/navbar"
+
     export default {
-        data() {
-            return {
-                store:[],
-                sort:{
-                    name:'默认排序',
-                    isShowSort:false,
-                    actions: [
-                        {name: '离我最近',callback:this.onSortSelect},
-                        {name: '评价最高',callback:this.onSortSelect},
-                        {name: '最新发布',callback:this.onSortSelect},
-                        {name: '价格最低',callback:this.onSortSelect},
-                        {name: '价格最高',callback:this.onSortSelect},
-                    ]
-                },
-            }
-        },
-        methods: {
-            onSortSelect(item) {
-                this.sort.isShowSort = false;
-                this.sort.name = item.name;
-                this.getStore();
-            },
-            getStore(){
-                this.$fetch('/getStore', {}).then((response) => {
-                    this.store = response.store
-                    console.log(103,this.store);
-                })
-                .catch(err =>{
-                    console.log(err);
-                });
-            }
-        },
-        created(){
-            this.getStore();
-        },
-        components:{
-            'navbar': navbar
+      data() {
+        return {
+          store: [],
+          sort: {
+            name: '默认排序',
+            isShowSort: false,
+            actions: [
+              {name: '离我最近', callback: this.onSortSelect},
+              {name: '评价最高', callback: this.onSortSelect},
+              {name: '最新发布', callback: this.onSortSelect},
+              {name: '价格最低', callback: this.onSortSelect},
+              {name: '价格最高', callback: this.onSortSelect},
+            ]
+          },
         }
+      },
+      methods: {
+        onSortSelect(item) {
+          this.sort.isShowSort = false;
+          this.sort.name = item.name;
+          this.getStore();
+        },
+        getStore(searchName) {
+          console.log(108,searchName);
+          this.$fetch('/getStore', {}).then((response) => {
+            this.store = response.store
+            //console.log(103, this.store);
+          })
+              .catch(err => {
+                console.log(err);
+              });
+        },
+        getSearchName(searchName){
+          console.log(117,searchName);
+        }
+      },
+      created() {
+        this.getStore();
+      },
+      components: {
+        'navbar': navbar,
+        /*'loading':Loading*/
+      }
     };
 </script>
 <style type="text/scss" lang="scss">

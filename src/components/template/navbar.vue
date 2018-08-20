@@ -3,7 +3,9 @@
         <van-row class="navbar-row" type="flex" justify="space-between">
             <van-col class="navbar-col back" @click.native="back()" span="6"><i class="icon-font">&#xe629;</i></van-col>
             <van-col class="navbar-col search-panel" span="10">
-                <i class="icon-font">&#xe6a8;</i><input type="text" placeholder="请输入商家">
+                <div>
+                    <i class="icon-font">&#xe6a8;</i><input type="text" placeholder="请输入商家" @focus="isSearchBtnShow=true" @blur="isSearchBtnShow=false" v-model="searchName">
+                </div><van-button v-show="isSearchBtnShow" @click="searchClick()" class="search-btn"  type="default">搜索</van-button>
             </van-col>
             <van-col class="navbar-col home-btn" @click.native="goHome()" span="6">
                 <i class="icon-font">&#xe60a;</i>
@@ -15,16 +17,26 @@
 
   export default {
     data() {
-      return {};
+      return {
+        searchName:'',
+        isSearchBtnShow:false
+      };
     },
     methods: {
       goHome() {
-        console.log('xx');
         this.$router.push({path: '/home'})
       },
       back() {
         this.$router.go(-1);//返回上一层
+      },
+      searchClick() {
+        this.isSearchBtnShow = true;
+        // 子组件中触发父组件方法ee并传值cc12345
+        this.$emit('getStore', this.searchName)
       }
+    },
+    mounted(){
+      this.$emit('getSearchName',this.searchName);//利用$emit来传值，getSearchName，this.searchName
     },
     watch:{
       $route(now,old){     //监控路由变换，控制返回按钮的显示
@@ -60,8 +72,12 @@
                 background-color: rgba(0,0,0,0.2);
                 height: $navHeight*0.6;
                 border-radius: 4px;
-                justify-content: flex-start;
+                justify-content: space-between;
                 align-items: center;
+                .search-btn{
+                    height: 98%;
+                    line-height: 98%;
+                }
                 i{
                     font-size: .3rem;
                     margin: 0 .2rem;
