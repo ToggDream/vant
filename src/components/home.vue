@@ -15,7 +15,7 @@
              <!-- <button @click="getMap()">get map</button>-->
           </div>
       </div>
-
+      <el-amap-search-box class="search-box" :search-option="searchOption" :on-search-result="onSearchResult"></el-amap-search-box>
   </div>
 </template>
 <script>
@@ -50,10 +50,32 @@
                         }
                     }
                 }],
+                //search
+              searchOption: {
+                city: '上海',
+                citylimit: true
+              },
             }
         },
         methods:{
-
+          onSearchResult(pois) {
+            let latSum = 0;
+            let lngSum = 0;
+            /*if (pois.length > 0) {
+              pois.forEach(poi => {
+                let {lng, lat} = poi;
+                lngSum += lng;
+                latSum += lat;
+                this.markers.push([poi.lng, poi.lat]);
+              });
+              let center = {
+                lng: lngSum / pois.length,
+                lat: latSum / pois.length
+              };
+              this.mapCenter = [center.lng, center.lat];
+            }*/
+            console.log(77,pois);
+          }
         },
         mounted(){
 
