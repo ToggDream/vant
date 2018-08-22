@@ -16,6 +16,11 @@
           </div>
       </div>
       <el-amap-search-box class="search-box" :search-option="searchOption" :on-search-result="onSearchResult"></el-amap-search-box>
+      <div class="father">
+          <div class="child">1</div>&nbsp;
+          <div class="child">2</div>&nbsp;
+          <div class="child">3</div>
+      </div>
   </div>
 </template>
 <script>
@@ -90,6 +95,19 @@
        .home-map{
            //display: none;
            height: 6rem;
+       }
+       .father{
+           width: 200px;
+           border: solid 1px red;
+           text-align: justify;
+           .child{
+                display: inline-block;
+           }
+           &:after {
+               content: "";
+               display: inline-block;
+               width: 100%;
+           }
        }
    }
 </style>
