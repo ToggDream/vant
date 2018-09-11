@@ -77,6 +77,7 @@
                 .search-btn{
                     height: 98%;
                     line-height: 98%;
+                    width: 1.2rem;
                 }
                 i{
                     font-size: .3rem;

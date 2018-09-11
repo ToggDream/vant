@@ -81,8 +81,9 @@
 </template>
 <script>
     import navbar from "@/components/template/navbar"
-
+    import sotre from "@/assets/js/page/store"
     export default {
+      name:'store',
       data() {
         return {
           store: [],
@@ -106,7 +107,7 @@
           this.getStore();
         },
         getStore(searchName) {
-          console.log(108,searchName);
+          //console.log(108,searchName);
           this.$fetch('/getStore', {}).then((response) => {
             this.store = response.store
             //console.log(103, this.store);
@@ -121,6 +122,7 @@
       },
       created() {
         this.getStore();
+        //console.log(124,sotre.data().data666);
       },
       components: {
         'navbar': navbar,
