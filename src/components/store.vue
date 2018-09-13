@@ -1,12 +1,11 @@
 <template>
     <div class="store">
         <navbar @getSearchName="getSearchName" @getStore="getStore"></navbar>
-        <loading></loading>
         <!--search panel-->
         <van-cell-group>
             <van-row class="operate-row">
                 <van-col span="8">
-                    <span @click="sort.isShowSort = !sort.isShowSort" >{{sort.name}}</span><i class="icon-font" v-if="!sort.isShowSort">&#xe613;</i><i class="icon-font" v-if="sort.isShowSort">&#xe60f;</i>
+                    <span @click.native="sort.isShowSort = !sort.isShowSort" >{{sort.name}}</span><i class="icon-font" v-if="!sort.isShowSort">&#xe613;</i><i class="icon-font" v-if="sort.isShowSort">&#xe60f;</i>
                 </van-col>
                 <van-col span="8"></van-col>
                 <van-col span="8"></van-col>

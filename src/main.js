@@ -9,12 +9,15 @@ import usePrototype from '@/assets/js/prototype'
 // 引入vue-amap
 import VueAMap from 'vue-amap';                                //高德地图
 import { lazyAMapApiLoaderInstance } from 'vue-amap';
+//拦截器
+import interceptor from '@/assets/js/interceptor'
 
 import Vant from 'vant';
 import 'vant/lib/vant-css/index.css';
 
-//全局组件
-import loading from '@/components/template/loading'
+//全局组件--文件
+import golbalTemplate from '@/assets/js/golbalTemplate'
+//import loading from '@/components/template/loading'
 
 Vue.use(useMock);
 Vue.use(Vant);
@@ -52,7 +55,7 @@ VueAMap.initAMapApiLoader({
 
 /* eslint-disable no-new */
 //注册全局组件
-Vue.component('Loading',loading)
+//Vue.component('Loading',loading)
 new Vue({
   el: '#app',
   router,

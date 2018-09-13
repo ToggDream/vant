@@ -4,10 +4,16 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-        position:{}
+        position:{},
+        loading:{
+            isShow:false,
+            content:''
+        }
     },
     mutations: {
-
+        changeMaskState(state,val){
+            state.loading.isShow = val;
+        }
     },
     getters: {
 
