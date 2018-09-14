@@ -15,16 +15,34 @@
             }
         },
         mounted(){
-            /*console.log(17,this.loading.isShow);//false
-            this.changeMaskState(true);
-            console.log(18,this.loading.isShow);//true*/
+            //杨辉三角
+                /*let n = 5;
+                for( var i = 0 ; i < n ; i++ ){   //一共N行
+                    for ( var j = 0 ; j <= i ; j++ ) {  //每行数字的个数即为行号、例如第1行1个数、第2行2个数
+                        console.log(24,this.Combination(i,j)+"  ");
+                    }
+                }*/
+
+
+            //console.log(17,this.loading.isShow);//false
+            //this.changeMaskState(true);
+            //console.log(18,this.loading.isShow);//true
         },
         computed:{
             //使用对象展开运算符将此对象混入到外部对象中
             ...mapState(['loading']),
         },
-        methods:{
+        methods: {
             ...mapMutations(['changeMaskState']),
+            /*Combination(m, n) {
+                if (n === 0)
+                    return 1;  //每行第一个数为1
+                else if (m === n)
+                    return 1; //最后一个数为1
+                //其余都是相加而来
+                else
+                    return this.Combination(m - 1, n - 1) + this.Combination(m - 1, n);
+            },*/
         }
     }
 </script>
