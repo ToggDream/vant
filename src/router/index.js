@@ -4,6 +4,7 @@ import home from '@/components/home'
 import vant from '@/components/vant'
 import store from '@/components/store'
 import homePosition from '@/components/homePosition'
+import storeDetail from '@/components/storeDetail'
 
 Vue.use(Router)
 
@@ -23,6 +24,11 @@ export default new Router({
       path: '/store',
       name: 'store',
       component: store
+    },
+    {
+        path: '/storeDetail',
+        name: 'storeDetail',
+        component: storeDetail
     },
     {
       path: '/homePosition',

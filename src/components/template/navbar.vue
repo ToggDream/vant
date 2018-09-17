@@ -2,10 +2,14 @@
     <div class="navbar">
         <van-row class="navbar-row" type="flex" justify="space-between">
             <van-col class="navbar-col back" @click.native="back()" span="6"><i class="icon-font">&#xe629;</i></van-col>
-            <van-col class="navbar-col search-panel" span="10">
+            <van-col v-if="type === 'search'" class="navbar-col search-panel" span="10">
                 <div>
                     <i class="icon-font">&#xe6a8;</i><input type="text" placeholder="请输入商家" @focus="isSearchBtnShow=true" @blur="isSearchBtnShow=false" v-model="searchName">
-                </div><van-button v-show="isSearchBtnShow" @click="searchClick()" class="search-btn"  type="default">搜索</van-button>
+                </div>
+                <van-button v-show="isSearchBtnShow" @click="searchClick()" class="search-btn"  type="default">搜索</van-button>
+            </van-col>
+            <van-col v-if="type === 'title'" class="navbar-col nav-title" span="10">
+                <div>{{titleName}}</div>
             </van-col>
             <van-col class="navbar-col home-btn" @click.native="goHome()" span="6">
                 <i class="icon-font">&#xe60a;</i>
@@ -16,6 +20,8 @@
 <script>
 
   export default {
+    name:'navbar',
+    props:['type','titleName'],//子组件用props接收到了父组件one参数
     data() {
       return {
         searchName:'',
@@ -37,6 +43,7 @@
     },
     mounted(){
       this.$emit('getSearchName',this.searchName);//利用$emit来传值，getSearchName，this.searchName
+      console.log(43,this.type);
     },
     watch:{
       $route(now,old){     //监控路由变换，控制返回按钮的显示
@@ -97,8 +104,11 @@
                 }
             }
             .home-btn{
+                display: flex;
+                justify-content: flex-end;
                 i{
                     font-size: .6rem;
+                    margin-right: .1rem;
                 }
             }
         }
