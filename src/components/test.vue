@@ -4,10 +4,11 @@
         <ul>
             <li v-for="(i,index) in list" @click="currentNav = index" :class="{ active: index === currentNav}">{{i}}</li>
         </ul>
+        <button @click="eventBusTestClick()">eventBusTestClick</button>
     </div>
 </template>
 <script>
-
+    import eventBus from '../assets/js/eventBus'
     export default {
         data() {
             return {
@@ -16,6 +17,14 @@
             };
         },
         methods: {
+          eventBusTestClick(){
+            eventBus.$emit('test','test666');
+          }
+        },
+        created(){
+          //console.log(11,eventBus);
+        },
+        components:{
 
         }
     };

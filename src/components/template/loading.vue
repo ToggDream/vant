@@ -7,6 +7,7 @@
 </template>
 <script>
     import {mapState,mapMutations,mapGetters } from 'vuex';//引入vuex的辅助函数  mapState,mapGetters放在couputed中;magMutations放在methods中
+    import eventBus from '@/assets/js/eventBus'
     export default {
         name: 'loading',
         data(){
@@ -25,6 +26,11 @@
         computed:{
             //使用对象展开运算符将此对象混入到外部对象中
             ...mapState(['loading']),
+        },
+        created(){
+          eventBus.$on('test',(data)=>{
+            console.log(32,data);
+          })
         },
         methods: {
             ...mapMutations(['changeMaskState']),
