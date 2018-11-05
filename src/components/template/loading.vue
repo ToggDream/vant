@@ -30,7 +30,7 @@
         created(){
           console.log(64,eventBus);
           eventBus.$on('test',(data)=>{
-            console.log(32,data);
+            console.log(33);
           })
         },
         methods: {
