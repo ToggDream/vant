@@ -2,7 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import router from './router'
+import router from './router/permission'
 import useMock from "@/mock"                                    //mock模拟数据
 import remInit from '@/assets/js/remInit'
 import usePrototype from '@/assets/js/prototype'
@@ -11,6 +11,11 @@ import VueAMap from 'vue-amap';                                //高德地图
 import { lazyAMapApiLoaderInstance } from 'vue-amap';
 //拦截器
 import interceptor from '@/assets/js/interceptor'
+//插件
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+// require styles
+import 'swiper/dist/css/swiper.css'
+
 
 import Vant from 'vant';
 import 'vant/lib/vant-css/index.css';
@@ -23,6 +28,7 @@ Vue.use(useMock);
 Vue.use(Vant);
 Vue.use(usePrototype);
 Vue.use(VueAMap);
+Vue.use(VueAwesomeSwiper, /* { default global options } */)
 useMock(true);                                                     //mock开关
 Vue.config.productionTip = false
 

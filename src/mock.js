@@ -27,5 +27,44 @@ let useMock = (isOpenMock) =>{
             },
         ],
     });
+  Mock.mock('/getTestList',{
+    "testList":[
+      {
+        label: () => Random.ctitle(6, 10),
+        content: () => Random.ctitle(20, 40),
+        id:1,
+        cate:'科技',
+        img:() => Random.dataImage('380x250'),
+      },
+      {
+        label: () => Random.ctitle(6, 10),
+        content: () => Random.ctitle(20, 40),
+        id:2,
+        cate:'汽车',
+        img:() => Random.dataImage('200x100'),
+      },
+      {
+        label: () => Random.ctitle(6, 10),
+        content: () => Random.ctitle(20, 40),
+        id:3,
+        cate:'财经',
+        img:() => Random.dataImage('200x100'),
+      },
+      {
+        label: () => Random.ctitle(6, 10),
+        content: () => Random.ctitle(20, 40),
+        id:4,
+        cate:'时尚',
+        img:() => Random.dataImage('200x100'),
+      },
+      {
+        label: () => Random.ctitle(6, 10),
+        content: () => Random.ctitle(20, 40),
+        id:5,
+        cate:'军事',
+        img:() => Random.dataImage('200x100'),
+      }
+    ]
+  })
 }
 export default useMock;

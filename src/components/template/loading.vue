@@ -28,7 +28,7 @@
             ...mapState(['loading']),
         },
         created(){
-          console.log(64,eventBus);
+          //console.log(64,eventBus);
           eventBus.$on('test',(data)=>{
           })
         },

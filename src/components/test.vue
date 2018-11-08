@@ -1,58 +1,175 @@
 <template>
     <div class="test">
+        <h2>{{ $route.meta.name }}</h2>
         <!--标题点击问题-->
         <ul>
             <li v-for="(i,index) in list" @click="currentNav = index" :class="{ active: index === currentNav}">{{i}}</li>
         </ul>
         <button @click="eventBusTestClick()">eventBusTestClick</button>
         <date-picker v-model="time1" :first-day-of-week="1"></date-picker>
-        <!--<date-picker v-model="time2" type="datetime" :time-picker-options="timePickerOptions"></date-picker>
-        <date-picker v-model="time3" range :shortcuts="shortcuts"></date-picker>-->
+        <div class="label-list-row">
+            <span v-for="(i,index) in labelList" :class="currentLabel === index ? 'active':''" @click="labelClick(index)">{{i.name}}</span>
+        </div>
+
+      <swiper :options="swiperOption" ref="swiper" class="label-panel"> 
+
+                <swiper-slide v-for="(j,index_1) in testList" :key="index_1">
+                    <div class="swiper-item">
+                        <img :src="j.img" alt="">
+                        <span>{{j.cate}}</span>
+                    </div>
+                </swiper-slide>
+                <div class="swiper-pagination" slot="pagination"></div>
+      </swiper>
+
     </div>
 </template>
 <script>
     import eventBus from '../assets/js/eventBus'
+    //import {a,b} from '../assets/js/exportTest'
     import DatePicker from 'vue2-datepicker'
+    import { swiper, swiperSlide } from 'vue-awesome-swiper'
     export default {
-        data() {
-            return {
-              list:[11111,22222,33333,4444],
-              currentNav:1,
-              time1: '2018-01-01',
-              /*time2: '',
-              time3: '',*/
-              /*shortcuts: [
-                {
-                  text: 'Today',
-                  onClick: () => {
-                    this.time3 = [ new Date(), new Date() ]
-                  }
-                }
-              ],
-              timePickerOptions:{
-                start: '00:00',
-                step: '00:30',
-                end: '23:30'
+      data() {
+        return {
+          list: [11111, 22222, 33333, 4444],
+          currentNav: 1,
+          time1: '2018-01-01',
+          swiperOption: {   //swiperOption是上面的options值
+            effect: 'coverflow',//效果
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            coverflowEffect: {
+              rotate: 50,
+              stretch: 0,
+              depth: 100,
+              modifier: 1,
+              slideShadows : true
+            },
+            pagination: { //页码
+              el: '.swiper-pagination'
+            },
+            on: {
+              /*touchEnd: (event) => {
+                console.log(43, this.currentLabel);
               }*/
-            };
+              slideChangeTransitionEnd:()=>{
+                this.currentLabel = this.swiper.activeIndex
+              },
+              click: ()=>{
+
+              }
+            }
+          },
+          labelList: [
+            {id: 0, name: '科技'},
+            {id: 1, name: '汽车'},
+            {id: 2, name: '财经'},
+            {id: 3, name: '时尚'},
+            {id: 4, name: '军事'},
+          ],
+          testList: [],
+          currentLabel: 0
+        };
+      },
+      methods: {
+        eventBusTestClick() {
+          eventBus.$emit('test', 'test666');
         },
-        methods: {
-          eventBusTestClick(){
-            eventBus.$emit('test','test666');
-          }
+        loadTestList() {
+          this.$fetch('/getTestList', {}).then((response) => {
+            this.testList = response.testList
+            console.log(44, response.testList);
+          })
+              .catch(err => {
+                console.log(err);
+              });
         },
-        created(){
-          console.log(11,eventBus);
-        },
-        components:{
-          DatePicker
+        labelClick(index){
+          this.currentLabel = index
+          this.swiper.slideTo(index, 1000, true)
         }
+      },
+      mounted(){
+        this.swiper.slideTo(0, 1000, true)
+      },
+      created() {
+        this.loadTestList()
+        //console.log(11,eventBus);
+        //console.log(47,a,b);
+      },
+      components: {
+        DatePicker,
+        swiper,
+        swiperSlide,
+      },
+      computed: {
+        swiper() {
+          return this.$refs.swiper.swiper
+        }
+      }
     };
 </script>
-<style type="text/scss" lang="scss">
+<style type="text/scss" lang="scss" scoped>
     .test{
         .active{
             background-color: red;
+            color: white;
+        }
+        .label-list-row{
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            span{
+                width: 2rem;
+                text-align: center;
+            }
+        }
+    }
+    .label-panel{
+        height: 5rem;
+        border: solid 1px #666666;
+        .swiper-item{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            >img{
+                width: 100%;
+                height: 100%;
+            }
+            >span{
+                color: white;
+                position:absolute;
+            }
+        }
+    }
+
+</style>
+<style lang="scss">
+    .test{
+        .swiper-inner {
+            width: 100%;
+            height: 400px;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 250px;
+            height: 100%;
+        }
+        .swiper-item{
+            border-radius: 20px!important;
+            //border: solid 3px greenyellow;
+            overflow: hidden!important;
+        }
+        .swiper-slide-next{
+            border-radius: 20px!important;
         }
     }
 </style>
