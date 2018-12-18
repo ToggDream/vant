@@ -70,7 +70,8 @@
             {id: 4, name: '军事'},
           ],
           testList: [],
-          currentLabel: 0
+          currentLabel: 0,
+          firstName:''
         };
       },
       methods: {
@@ -89,13 +90,27 @@
         labelClick(index){
           this.currentLabel = index
           this.swiper.slideTo(index, 1000, true)
-        }
+        },
+        getFullName(user){
+          /*const firstName = user.firstName
+          const lastName = user.lastName*/
+          //{this.firstName} = user
+          const {firstName, secondName, lastName } = user
+          return `${firstName} ${secondName}  ${lastName}`
+        },
       },
       mounted(){
         this.swiper.slideTo(0, 1000, true)
       },
       created() {
         this.loadTestList()
+        let user = {
+          firstName: 'first',
+          lastName: 'last',
+          secondName: 'second'
+        }
+        let nameList  = this.getFullName(user)
+        console.log(109,nameList);
         //console.log(11,eventBus);
         //console.log(47,a,b);
       },
