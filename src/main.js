@@ -10,7 +10,7 @@ import usePrototype from '@/assets/js/prototype'
 import VueAMap from 'vue-amap';                                //高德地图
 import { lazyAMapApiLoaderInstance } from 'vue-amap';
 //拦截器
-import interceptor from '@/assets/js/interceptor'
+//import interceptor from '@/assets/js/interceptor'
 //插件
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 // require styles

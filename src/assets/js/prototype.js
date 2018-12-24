@@ -4,6 +4,8 @@ import axios from 'axios'
 import {post,fetch,patch,put} from '@/assets/js/http'             //axios封装
 import store from "@/assets/js/store"                             //vuex
 import VueAMap from 'vue-amap';                                //高德地图
+//axios封装2
+import asiosPlugin from '../js/axiosPlugin'
 let usePrototype = () =>{
     Vue.prototype.$store = store;
     Vue.prototype.$state = store.state;

@@ -26,7 +26,8 @@
 </template>
 <script>
     import eventBus from '../assets/js/eventBus'
-    //import {a,b} from '../assets/js/exportTest'
+    //import data from '../assets/js/exportTest'
+    import { isDate } from '../assets/js/isDate'
     import DatePicker from 'vue2-datepicker'
     import { swiper, swiperSlide } from 'vue-awesome-swiper'
     export default {
@@ -81,7 +82,7 @@
         loadTestList() {
           this.$fetch('/getTestList', {}).then((response) => {
             this.testList = response.testList
-            console.log(44, response.testList);
+            //console.log(44, response.testList);
           })
               .catch(err => {
                 console.log(err);
@@ -98,6 +99,34 @@
           const {firstName, secondName, lastName } = user
           return `${firstName} ${secondName}  ${lastName}`
         },
+        study(){
+          // good
+          class Person{
+            constructor(name,age){
+              this.name = name
+              this.age = age
+            }
+            say(){
+              return name
+              //return age
+            }
+          }
+          const person = new Person('lfz', '18')
+
+          //console.log(126,person)
+
+          /*class Box{
+            constructor(num1,num2){
+              this.num1 = num1;
+              this.num2=num2;
+            }
+            sum(){
+              return num1+num2;
+            }
+          }
+          let box = new Box(12,88);
+          console.log(box);*/
+        }
       },
       mounted(){
         this.swiper.slideTo(0, 1000, true)
@@ -110,7 +139,9 @@
           secondName: 'second'
         }
         let nameList  = this.getFullName(user)
-        console.log(109,nameList);
+        //console.log(109,nameList);
+        this.study()
+        console.log(144,isDate('2018-12-25'))
         //console.log(11,eventBus);
         //console.log(47,a,b);
       },
