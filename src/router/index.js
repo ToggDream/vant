@@ -14,6 +14,9 @@ const store = () => import('@/components/store')
 const homePosition = () => import('@/components/homePosition')
 const storeDetail = () => import('@/components/storeDetail')
 const test = () => import('@/components/test')
+const father = () => import('@/components/keepAliveTest/father')
+const child_1 = () => import('@/components/keepAliveTest/children/child_1')
+const child_2 = () => import('@/components/keepAliveTest/children/child_2')
 
 Vue.use(Router)
 
@@ -29,7 +32,7 @@ export default new Router({
       name: 'test',
       meta:{
         requireAuth:true,
-        name:'测试'
+        name:'测试',
       },
       component: test
     },
@@ -52,6 +55,30 @@ export default new Router({
       path: '/homePosition',
       name: 'homePosition',
       component: homePosition
-    }
+    },
+      //keepAliveTest
+    {
+      path: '/father',
+      name: 'father',
+      component: father,
+      children: [
+        {
+          path: 'child_1',
+          name: 'child_1',
+          component: child_1,
+          meta: {
+            keepAlive: true
+          }
+        },
+        {
+          path: 'child_2',
+          name: 'child_2',
+          component: child_2,
+          meta: {
+            keepAlive: false
+          }
+        },
+      ]
+    },
   ]
 })

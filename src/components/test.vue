@@ -144,6 +144,7 @@
         console.log(144,isDate('2018-12-25'))
         //console.log(11,eventBus);
         //console.log(47,a,b);
+        console.log(147,this.$route.meta);
       },
       components: {
         DatePicker,
