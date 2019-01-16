@@ -27,6 +27,7 @@
 <script>
     import eventBus from '../assets/js/eventBus'
     //import data from '../assets/js/exportTest'
+    import toolFn from '../assets/js/tools/assist'
     import { isDate } from '../assets/js/isDate'
     import DatePicker from 'vue2-datepicker'
     import { swiper, swiperSlide } from 'vue-awesome-swiper'
@@ -101,7 +102,7 @@
         },
         study(){
           // good
-          class Person{
+          /*class Person{
             constructor(name,age){
               this.name = name
               this.age = age
@@ -111,7 +112,7 @@
               //return age
             }
           }
-          const person = new Person('lfz', '18')
+          const person = new Person('lfz', '18')*/
 
           //console.log(126,person)
 
@@ -126,6 +127,39 @@
           }
           let box = new Box(12,88);
           console.log(box);*/
+          /*[1,3,4].reduce(() =>{
+
+          })*/
+          /*let arr = [2,4,4]
+          arr.map((index,map)=>{
+
+          })*/
+
+          /*let a1 = {b: {c: {}},d:'ddd'}
+          //浅拷贝
+          let shadowClone = (source) => {
+            let target = {}
+            for (let i in source) {
+              console.log(142,i);
+              target[i] = source[i]
+            }
+            return target
+          }*/
+          //console.log(148,toolFn.type(['x','y']));
+          let a = {name: 'lfz',age: '24'}
+          function clone(source) {
+            let target = {}
+            for(let i in source){
+              if(source.hasOwnProperty(i)){
+                if(typeof source[i] === 'object'){
+                  target[i] = clone(source)
+                }else{
+                  target[i] = source[i]
+                }
+              }
+            }
+            return target
+          }
         }
       },
       mounted(){
