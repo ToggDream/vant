@@ -73,7 +73,13 @@
           ],
           testList: [],
           currentLabel: 0,
-          firstName:''
+          firstName:'',
+            //indexedDB
+            myDB: {
+                name: 'testDB',
+                version: 2,
+                db: null
+            }
         };
       },
       methods: {
@@ -100,9 +106,9 @@
           const {firstName, secondName, lastName } = user
           return `${firstName} ${secondName}  ${lastName}`
         },
-        study(){
-          // good
-          /*class Person{
+        study() {
+            // good
+            /*class Person{
             constructor(name,age){
               this.name = name
               this.age = age
@@ -114,9 +120,9 @@
           }
           const person = new Person('lfz', '18')*/
 
-          //console.log(126,person)
+            //console.log(126,person)
 
-          /*class Box{
+            /*class Box{
             constructor(num1,num2){
               this.num1 = num1;
               this.num2=num2;
@@ -127,15 +133,15 @@
           }
           let box = new Box(12,88);
           console.log(box);*/
-          /*[1,3,4].reduce(() =>{
+            /*[1,3,4].reduce(() =>{
 
           })*/
-          /*let arr = [2,4,4]
+            /*let arr = [2,4,4]
           arr.map((index,map)=>{
 
           })*/
 
-          /*let a1 = {b: {c: {}},d:'ddd'}
+            /*let a1 = {b: {c: {}},d:'ddd'}
           //浅拷贝
           let shadowClone = (source) => {
             let target = {}
@@ -145,8 +151,8 @@
             }
             return target
           }*/
-          //console.log(148,toolFn.type(['x','y']));
-          let a = {name: 'lfz',age: '24'}
+            //console.log(148,toolFn.type(['x','y']));
+            /*let a = {name: 'lfz',age: '24'}
           function clone(source) {
             let target = {}
             for(let i in source){
@@ -159,8 +165,74 @@
               }
             }
             return target
+          }*/
+            /**
+             * cookie
+             */
+            /*this.setCookie('name','lfz',1)
+            console.log(168,this.getCookie('name'));*/
+            /*let person = {
+                name:'lufangzhou',
+                age:'18'
+            }
+            console.log(172,JSON.stringify(person));
+            localStorage.setItem('person',JSON.stringify(person))
+            console.log(localStorage.getItem('name'));
+        },
+          // 函数中的参数分别为 cookie 的名称、值以及过期天数
+          setCookie(c_name, value, expiredays) {
+              let exdate = new Date(c_name, value, expiredays);
+              exdate.setDate(exdate.getDate() + expiredays);
+              document.cookie = c_name + "=" + escape(value) +
+                  ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString())
+          },
+          getCookie(c_name) {
+              if (document.cookie.length > 0) {
+                  let c_start = document.cookie.indexOf(c_name + "=");
+                  if (c_start != -1) {
+                      c_start = c_start + c_name.length + 1;
+                      let c_end = document.cookie.indexOf(";", c_start);
+                      if (c_end == -1) {
+                          c_end = document.cookie.length;
+                      }
+
+                      return unescape(document.cookie.substring(c_start, c_end));
+                  }
+              }
+              return "";
+          },*/
+            //打开-创建数据库
+            /*let request = window.indexedDB.open('testDB')
+            console.log(200,request);*/
+            this.openDB(this.myDB.name,this.myDB.version)
+            //关闭-删除数据库
+            //this.closeDB(this.myDB.db)
+            /*setTimeout(()=>{
+                this.deleteDB(this.myDB.name)
+            },500)*/
+        },
+          openDB(name, ver) {
+              let version = ver || 1
+              let request = window.indexedDB.open(name, version)
+              request.onerror = (e) => {
+                  console.log('open error!');
+              }
+              request.onsuccess = (e) => {
+                  this.myDB.db = e.target.result
+                  //console.log(216, 'create success');
+              }
+              //当我们传入的版本号和数据库当前版本号不一致的时候onupgradeneeded就会被调用
+              request.onupgradeneeded = (e) =>{
+                  console.log(`DB version changed to ${version}`);
+              }
+              console.log(217, this.myDB);
+          },
+          closeDB(db){
+            db.close()
+          },
+          deleteDB(name){
+            window.indexedDB.deleteDatabase(name)
           }
-        }
       },
       mounted(){
         this.swiper.slideTo(0, 1000, true)
@@ -175,10 +247,10 @@
         let nameList  = this.getFullName(user)
         //console.log(109,nameList);
         this.study()
-        console.log(144,isDate('2018-12-25'))
+        //console.log(144,isDate('2018-12-25'))
         //console.log(11,eventBus);
         //console.log(47,a,b);
-        console.log(147,this.$route.meta);
+       // console.log(147,this.$route.meta);
       },
       components: {
         DatePicker,
