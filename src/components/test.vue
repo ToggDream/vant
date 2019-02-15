@@ -22,6 +22,35 @@
                 <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
 
+        <!--Vue列表渲染问题-->
+        <div class="p-list-render">
+            <div>
+                <div class="row">
+                    <span>单价</span>
+                    <span>数量</span>
+                    <span style="width: 100px">总价</span>
+                </div>
+                <div class="row" v-for="(i,index) in renderData">
+                    <span>
+                        <input type="text" v-model="renderData[index].perPrice">
+                    </span>
+                    <span>
+                        <input type="text" v-model="renderData[index].number">
+                    </span>
+                    <span>{{i.perPrice * i.number}}</span>
+                </div>
+                <div class="row">
+                    <span>总计</span>
+                    <span>{{totalPrice}}</span>
+                </div>
+                <div class="row">
+                    <span>数组长度</span>
+                    <span>{{renderData.length}}</span>
+                </div>
+            </div>
+            <button @click="resetData()">还原</button>
+        </div>
+
     </div>
 </template>
 <script>
@@ -79,7 +108,12 @@
                 name: 'testDB',
                 version: 2,
                 db: null
-            }
+            },
+          renderData:[
+            {perPrice: 1, number: 10},
+            {perPrice: 1, number: 20},
+            {perPrice: 1, number: 30},
+          ]
         };
       },
       methods: {
@@ -232,7 +266,13 @@
           },
           deleteDB(name){
             window.indexedDB.deleteDatabase(name)
-          }
+          },
+        resetData(){
+          //this.renderData[0] = {perPrice: 1, number: 10}
+          this.$set(this.renderData,0,{perPrice: 1, number: 10})
+          this.renderData.splice(1)
+          console.log(this.renderData);
+        }
       },
       mounted(){
         this.swiper.slideTo(0, 1000, true)
@@ -260,6 +300,13 @@
       computed: {
         swiper() {
           return this.$refs.swiper.swiper
+        },
+        totalPrice(){
+            let sum = 0
+            for(let i of this.renderData){
+              sum += i.perPrice*i.number
+            }
+            return sum
         }
       }
     };
@@ -298,6 +345,20 @@
                 color: white;
                 position:absolute;
             }
+        }
+    }
+
+    .p-list-render {
+        margin-top: 20px;
+        border: solid 1px red;
+        .row {
+            display: flex;
+            justify-content: space-between;
+            input, span {
+                width: 100px;
+            }
+            border-bottom: solid 1px #ffffff;
+            padding: 6px;
         }
     }
 
