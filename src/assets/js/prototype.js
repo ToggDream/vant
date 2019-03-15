@@ -1,7 +1,7 @@
 //此js定义VUE原型链上的方法
 import Vue from 'vue'
 import axios from 'axios'
-import {post,fetch,patch,put} from '@/assets/js/http'             //axios封装
+import {post,fetch,patch,put} from '@/assets/js/http'             //axios封装 自己网上找的方法
 import store from "@/assets/js/store"                             //vuex
 import VueAMap from 'vue-amap';                                //高德地图
 //axios封装2
@@ -93,7 +93,7 @@ let usePrototype = () =>{
     }
 
     /*
-        * 多个ajax函数的请求方法（对Vue.prototype._ajax的简单封装）
+        * 多个ajax函数的请求方法（对Vue.prototype._ajax的简单封装） 王玉略方法
         *
         * 封装目的：多个ajax函数的请求方法时加载动画会在第一个回调中被关闭掉。
         * 这样不符合逻辑，加载框需要在最后一个回调中被关闭掉，未了实现这个目的，我使用了Promise.all()方法；

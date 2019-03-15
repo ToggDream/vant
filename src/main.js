@@ -29,7 +29,7 @@ Vue.use(Vant);
 Vue.use(usePrototype);
 Vue.use(VueAMap);
 Vue.use(VueAwesomeSwiper, /* { default global options } */)
-useMock(true);                                                     //mock开关
+useMock(false);                                                     //mock开关
 Vue.config.productionTip = false
 
 // 初始化vue-amap

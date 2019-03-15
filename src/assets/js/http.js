@@ -56,12 +56,12 @@ export function fetch(url,params={}){
         axios.get(url,{
             params:params
         })
-            .then(response => {
-                resolve(response.data);
-            })
-            .catch(err => {
-                reject(err)
-            })
+        .then(response => {
+            resolve(response.data);
+        })
+        .catch(err => {
+            reject(err)
+        })
     })
 }
 

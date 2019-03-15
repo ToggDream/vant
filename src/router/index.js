@@ -14,6 +14,7 @@ const store = () => import('@/components/store')
 const homePosition = () => import('@/components/homePosition')
 const storeDetail = () => import('@/components/storeDetail')
 const test = () => import('@/components/test')
+const jsAsync = () => import('@/components/jsAsync')
 const father = () => import('@/components/keepAliveTest/father')
 const child_1 = () => import('@/components/keepAliveTest/children/child_1')
 const child_2 = () => import('@/components/keepAliveTest/children/child_2')
@@ -35,6 +36,11 @@ export default new Router({
         name:'测试',
       },
       component: test
+    },
+    {
+      path: '/jsAsync',
+      name: 'jsAsync',
+      component: jsAsync
     },
     {
       path: '/vant',
