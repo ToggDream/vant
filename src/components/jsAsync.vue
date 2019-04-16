@@ -26,12 +26,13 @@
               })
           })*/
         const getA = ()=>{
-          this.$fetch('/api/sug?code=utf-8&q=手机',)
+          this.$fetch('https://suggest.taobao.com/sug?code=utf-8&q=%E6%89%8B%E6%9C%BA',)
             .then((res)=>{
               console.log('1', res.result[0]);
             })
         }
-
+        getA()
+        console.log('xxx')
         const getB = ()=>{
           this.$fetch('/api/sug?code=utf-8&q=包',)
             .then((res)=>{
@@ -50,7 +51,7 @@
         getB()
         getC()
         console.timeEnd('get1')*/
-        async function load() {
+        /*async function load() {
           await getA()
           await getB()
           await getC()
@@ -62,7 +63,7 @@
         async function getABC() {
           let results = await Promise.all([ getA(),getB(),getC()])
           return results.reduce((total,value) => total*value)
-        }
+        }*/
         /*console.time('async')
         getABC()
         console.timeEnd('async')*/
@@ -129,9 +130,9 @@
     mounted(){
       //callback
       //this.callbackTest()
-      //this.init()
+      this.init()
       //this.asyncAwait()
-      this.test()
+      //this.test()
     }
   }
 </script>
